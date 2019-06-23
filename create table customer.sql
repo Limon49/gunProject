@@ -1,7 +1,3 @@
--- noinspection SqlDialectInspectionForFile
-
--- noinspection SqlNoDataSourceInspectionForFile
-
 create table customer (
     user_nid VARCHAR(50) PRIMARY KEY,
 	name VARCHAR(50) NOT NULL,
@@ -12,6 +8,7 @@ create table customer (
 );
 create table gun(
     gun_id VARCHAR(50)  PRIMARY KEY,
+    user_nid VARCHAR(50) NOT NULL,
     gun_catagory VARCHAR(50) NOT NULL,
     brand_name VARCHAR(50) NOT NULL,
     gun_price VARCHAR(50) NOT NULL
@@ -23,13 +20,13 @@ create table cart_item(
 	gun_id VARCHAR(50) NOT NULL,
 	user_nid VARCHAR(50) NOT NULL,
 	cost integer,
-	FOREIGN KEY (gun_id) REFERENCES gun(gun_id) on delete cascade on update cascade,
-	FOREIGN KEY(user_nid) REFERENCES customer(user_nid) on delete cascade on update cascade
+	FOREIGN KEY (gun_id) REFERENCES gun(gun_id) on delete cascade ,
+	FOREIGN KEY(user_nid) REFERENCES customer(user_nid) on delete cascade 
 );
 
  create table payment(
  	cart_item_id VARCHAR(50) NOT NULL,
-	FOREIGN KEY (cart_item_id) REFERENCES cart_item(cart_item_id) on delete cascade on update cascade
+	FOREIGN KEY (cart_item_id) REFERENCES cart_item(cart_item_id) on delete cascade 
  );
 
  
